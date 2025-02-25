@@ -1,0 +1,11 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ofx"
+version = "0.1"
+dependencies = ["ofxparse", "pandas", "openpyxl"]
+
+[project.scripts]
+ofx = "ofx.converter:main"
