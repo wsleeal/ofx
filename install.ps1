@@ -54,3 +54,5 @@ $shortcut.IconLocation = "$pythonPath,0"
 $shortcut.Save()
 
 Write-Host "Instalacao concluida!"
+
+Read-Host "Pressione Enter para continuar..."
