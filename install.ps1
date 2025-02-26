@@ -46,9 +46,10 @@ Write-Host "Criando atalho na area de trabalho..."
 $WshShell = New-Object -ComObject WScript.Shell
 $desktopPath = [System.IO.Path]::Combine([System.Environment]::GetFolderPath("Desktop"), "OFX.lnk")
 
+$ofxPath = $pythonPath -replace "python.exe", "pythonw.exe -m ofx"
 $shortcut = $WshShell.CreateShortcut($desktopPath)
 $shortcut.TargetPath = "pythonw.exe"
-$shortcut.Arguments = "-m ofx"
+$shortcut.Arguments = "`"$ofxPath`""
 $shortcut.WorkingDirectory = [System.IO.Path]::GetDirectoryName($pythonPath)
 $shortcut.IconLocation = "$pythonPath,0"
 $shortcut.Save()
