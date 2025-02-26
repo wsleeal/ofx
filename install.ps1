@@ -1,3 +1,14 @@
+# Verifica se está rodando como administrador
+$admin = [System.Security.Principal.WindowsPrincipal] [System.Security.Principal.WindowsIdentity]::GetCurrent()
+$adminRole = [System.Security.Principal.WindowsBuiltInRole]::Administrator
+
+if (-not $admin.IsInRole($adminRole)) {
+    # Reexecuta o script com privilégios administrativos
+    $scriptPath = $PSCommandPath
+    Start-Process powershell -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$scriptPath`"" -Verb RunAs
+    exit
+}
+
 # Define os links de download
 $gitInstallerUrl = "https://github.com/git-for-windows/git/releases/download/v2.48.1.windows.1/Git-2.48.1-64-bit.exe"
 $pythonInstallerUrl = "https://www.python.org/ftp/python/3.13.2/python-3.13.2-amd64.exe"
